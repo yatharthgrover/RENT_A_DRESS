@@ -1,0 +1,148 @@
+<!Doctype html>
+
+<html lang="zxx">
+<head>
+    <link rel="stylesheet" href="css/index_slider.css">
+        
+</head>
+<body>
+    <%- include('header'); %>   
+
+   <div class="slideshow-container">
+  <div class="mySlides1">
+    <img src="images/index.jpg" style="width:100%; height: 60vh;">
+  </div>
+
+  <div class="mySlides1">
+    <img src="images/26950017875998.jpg" style="width:100%;height: 60vh;">
+  </div>
+
+  <div class="mySlides1">
+    <img src="images/Untitled-M._SX1242_CB459344387_.jpg" style="width:100%;height: 60vh;">
+  </div>
+
+  <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
+</div>
+<!--Slider Code-->
+
+
+
+    <img src="images/Dressy_Occasion_Wear.jpg" width="100%">
+    <br><center>
+<div class="row" width="75%">
+    <div class="col-lg-6">
+        <a href="category"><img src="images/Strait_line.jpg" width="50%" ></a> 
+    </div>
+    <div class="col-lg-6">
+        <a href="category"><img src="images/Anarkali.jpg" width="50%" ></a>
+    </div>    
+</div>
+
+<br><br>
+
+
+<img src="images/Mix_and_Match.jpg" width="100%"><br><br><br><br>
+<div width="100%">   
+    <a href="category">
+        <img src="images/Palazoo.jpg" width="18%">&nbsp;&nbsp;
+        <img src="images/Wrap_Angrakha.jpg" width="18%">&nbsp;&nbsp;
+        <img src="images/Patiala.jpg" width="18%">&nbsp;&nbsp;
+        <img src="images/Foil_Prints.jpg" width="18%">&nbsp;&nbsp;
+        <img src="images/Duppatta_Scarves.jpg" width="18%">
+    </a>    
+</center>
+</div>
+
+
+<br><br><br><br>
+<center>
+        <img src="images/Kurtis_clpbanner_12Oct17_vishal.jpg" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img src="images/CLP_Hero_Banner_Kurtis_Fresh_Styles_Indu_5Mar.jpg" >    
+</center>
+<br><br><br><br>
+
+
+
+<div class="container" style="display: grid;grid-template-columns: auto auto auto;" width="100%">
+    <center>
+        <a href="category">
+        <img src="images/Knee_Length.jpg" height="80%" width="30%">&emsp;&emsp;&emsp;
+        <img src="images/Leggins.jpg" height="80%" width="30%">&emsp;&emsp;&emsp;
+        <img src="images/Calf_Length.jpg" height="80%" width="30%">
+    </a>
+    </center>    
+</div>
+
+<hr>
+    
+
+    <!-- free shipping here -->
+    <!-- <section class="shipping_details section_padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single_shopping_details">
+                        <img src="img/icon/icon_1.png" alt="">
+                        <h4>Free shipping</h4>
+                        <p>Divided face for bearing the divide unto seed winged divided light Forth.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single_shopping_details">
+                        <img src="img/icon/icon_2.png" alt="">
+                        <h4>Free shipping</h4>
+                        <p>Divided face for bearing the divide unto seed winged divided light Forth.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single_shopping_details">
+                        <img src="img/icon/icon_3.png" alt="">
+                        <h4>Free shipping</h4>
+                        <p>Divided face for bearing the divide unto seed winged divided light Forth.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single_shopping_details">
+                        <img src="img/icon/icon_4.png" alt="">
+                        <h4>Free shipping</h4>
+                        <p>Divided face for bearing the divide unto seed winged divided light Forth.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+     --><!-- free shipping end -->
+
+
+    <!--::footer_part start::-->
+    <%- include('footer'); %>
+    <!--::footer_part end::-->
+
+
+    <!-- For Slider -->
+<script type="text/javascript">
+    
+var slideIndex = [1,1];
+var slideId = ["mySlides1", "mySlides2"]
+showSlides(1, 0);
+showSlides(1, 1);
+
+function plusSlides(n, no) {
+  showSlides(slideIndex[no] += n, no);
+}
+
+function showSlides(n, no) {
+  var i;
+  var x = document.getElementsByClassName(slideId[no]);
+  if (n > x.length) {slideIndex[no] = 1}    
+  if (n < 1) {slideIndex[no] = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";  
+  }
+  x[slideIndex[no]-1].style.display = "block";  
+}
+</script>
+</body>
+
+</html>

@@ -1,0 +1,159 @@
+
+<!Doctype html>
+<html>
+<%if(currentUser){%>
+<head>
+	<meta http-equiv = "refresh" content = ".5; url = http://localhost:5000/index" />
+</head>
+<%}%>
+<body>
+<%- include('header'); %>
+    <!--================Home Banner Area =================-->
+    <!-- breadcrumb start-->
+    <section class="breadcrumb breadcrumb_bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="breadcrumb_iner">
+                        <div class="breadcrumb_iner_item">
+                            <p>Home / Login</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb start-->
+
+    <!--================login_part Area =================-->
+    <section class="login_part section_padding">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-6">
+                    <div class="login_part_text text-center">
+                        <div class="login_part_text_iner">
+                            <h2>New to our Shop?</h2>
+                            <p>There are advances being made in science and technology
+                                everyday, and a good example of this is the</p>
+                            <a href="signup" class="btn_3">Create an Account</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="login_part_form">
+                        <div class="login_part_form_iner">
+                            <h3>Welcome Back ! <br>
+                                Please Sign in now</h3>
+                            <form class="row contact_form" action="/login" method="post">
+
+
+                               <div class="col-md-12 form-group p_star">
+
+                                   <%if(message.length>0){%>
+          <div class="alert alert-danger " role="alert">
+  <%message.forEach(function(message){%>
+            <p class="text-center">
+              <%=message%>
+            </p>
+            <%});%>
+            
+</div>  <%}%></div>
+
+
+
+                                <div class="col-md-12 form-group p_star">
+
+                                    <input type="text" class="form-control" id="name" name="username" placeholder="username" required>
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <div class="creat_account d-flex align-items-center">
+                                        <input type="checkbox" id="f-option" name="selector">
+                                        <label for="f-option">Remember me</label>
+                                    </div>
+                                    <button type="submit" value="submit" class="btn_3">
+                                        Log in
+                                    </button>
+                                    <a class="lost_pass" href="#">forget password?</a>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================login_part end =================-->
+
+    <!-- subscribe_area part start-->
+    <section class="instagram_photo">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="instagram_photo_iner">
+                        <div class="single_instgram_photo">
+                            <img src="img/instagram/inst_1.png" alt="">
+                            <a href="#"><i class="ti-instagram"></i></a> 
+                        </div>
+                        <div class="single_instgram_photo">
+                            <img src="img/instagram/inst_2.png" alt="">
+                            <a href="#"><i class="ti-instagram"></i></a> 
+                        </div>
+                        <div class="single_instgram_photo">
+                            <img src="img/instagram/inst_3.png" alt="">
+                            <a href="#"><i class="ti-instagram"></i></a> 
+                        </div>
+                        <div class="single_instgram_photo">
+                            <img src="img/instagram/inst_4.png" alt="">
+                            <a href="#"><i class="ti-instagram"></i></a> 
+                        </div>
+                        <div class="single_instgram_photo">
+                            <img src="img/instagram/inst_5.png" alt="">
+                            <a href="#"><i class="ti-instagram"></i></a> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--::subscribe_area part end::-->
+
+    <!--::footer_part start::-->
+    <%- include('footer'); %>
+    <!--::footer_part end::-->
+
+    <!-- jquery plugins here-->
+    <!-- jquery -->
+    <script src="js/jquery-1.12.1.min.js"></script>
+    <!-- popper js -->
+    <script src="js/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- easing js -->
+    <script src="js/jquery.magnific-popup.js"></script>
+    <!-- swiper js -->
+    <script src="js/swiper.min.js"></script>
+    <!-- swiper js -->
+    
+    <!-- particles js -->
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <!-- slick js -->
+    <script src="js/slick.min.js"></script>
+    <script src="js/jquery.counterup.min.js"></script>
+    <script src="js/waypoints.min.js"></script>
+    <script src="js/contact.js"></script>
+    <script src="js/jquery.ajaxchimp.min.js"></script>
+    <script src="js/jquery.form.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/mail-script.js"></script>
+    <script src="js/stellar.js"></script>
+    <script src="js/price_rangs.js"></script>
+    <!-- custom js -->
+    <script src="js/custom.js"></script>
+</body>
+
+</html>

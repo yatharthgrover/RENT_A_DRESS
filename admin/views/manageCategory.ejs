@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><title>Manage Category</title></head>
+<body class="animsition">
+   <div class="page-container">
+            <!-- HEADER DESKTOP-->
+            <%- include('header'); %>
+            
+            <!-- HEADER DESKTOP-->
+
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                 <%if(message.length>0){%>
+                    <div class="alert alert-danger " role="alert">
+                       
+                        <p class="text-center">
+                            <%=message%>
+                        </p>
+                                            
+                    </div>  
+                <%}%>
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-data__tool">
+                                    <div class="table-data__tool-left">
+                                        <form class="form-header" action="" method="POST">
+                                            <input onkeyup="searchFunction();" class="au-input au-input--xl" type="text" id="search" name="search" placeholder="Search for category name" />
+                                            
+                                        </form>                                        
+                                    </div>
+                                    <div class="table-data__tool-right">
+                                        <form action="addCategory">
+                                        <button class="au-btn au-btn-icon au-btn--green au-btn--small" type="submit" style="line-height:43px;">
+                                            <i class="zmdi zmdi-plus"></i>add category</button>
+                                        </form>  
+                                    </div>
+                                </div>
+                                <!-- DATA TABLE -->
+                                <div class="table-responsive table-responsive-data2">
+                                    <table class="table table-data2" id="searchTable">
+                                        <thead>
+                                            <tr>
+                                                <th>No.</th>
+                                                <th>image</th>
+                                                <th> Category name</th>
+                                                <th>operations</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="tr-shadow">
+                                                <%var i=1%>
+                                          <%Product.forEach(function(product){%>
+                                                <tr class="spacer"></tr>
+                                                 <tr class="tr-shadow">
+
+                                                <td><%=i%>.</td>
+                                                <td class="img-text">
+                                                    <img class="img" src="<%=product.categoryImage.substr(7)%>" alt="">
+                                                </td >
+                                                <td><%=product.categoryName%></td>
+                                                <td>
+                                                    <div class="table-data-feature w-75">
+                                                        <a href="/editCategory?id=<%=product._id%>" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                            <i class="zmdi zmdi-edit"></i>
+                                                        </a>
+                                                        <a href="/deleteCategory?id=<%=product._id%>" class="item" onClick="del12()" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                            <i class="zmdi zmdi-delete"></i>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                              <%i++%>
+                                             <%})%> 
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- END DATA TABLE -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END MAIN CONTENT-->
+            <!-- END PAGE CONTAINER-->
+        </div>
+
+    </div>
+<script type="text/javascript">
+    function del12(){
+        alert("Do you want to Delete this Product Permanently..!!");
+    }
+</script>
+    <!-- Jquery JS-->
+    <script src="vendor/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <!-- Vendor JS       -->
+    <script src="vendor/slick/slick.min.js">
+    </script>
+    <script src="vendor/wow/wow.min.js"></script>
+    <script src="vendor/animsition/animsition.min.js"></script>
+    <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+    </script>
+    <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="vendor/counter-up/jquery.counterup.min.js">
+    </script>
+    <script src="vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="vendor/select2/select2.min.js">
+    </script>
+
+    <!-- Main JS-->
+    <script src="js/main.js"></script>
+    <script src="js/custom.js"></script>
+    
+    	<script>
+		$(document).ready(function(){
+			$('.all-menu').removeClass('active');
+			$('.manageCategory').addClass('active');
+		});
+		
+	</script>
+    
+
+</body>
+
+</html>
+<!-- end document-->

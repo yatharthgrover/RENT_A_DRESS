@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Edit Product</title>
+</head>
+
+<body class="animsition">
+    <%- include('header'); %>
+            <!-- HEADER DESKTOP-->
+<div class="page-container">
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Edit Product</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="custom-tab">
+
+                                            <nav>
+                                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                                    <a class="nav-item nav-link active" id="custom-nav-home-tab"
+                                                        data-toggle="tab" href="#custom-nav-home" role="tab"
+                                                        aria-controls="custom-nav-home" aria-selected="true">Product</a>
+                                                </div>
+                                            </nav>
+                    <div class="tab-content pl-3 pt-2" id="nav-tabContent">
+<div class="tab-pane fade show active" id="custom-nav-home" role="tabpanel" aria-labelledby="custom-nav-home-tab">
+<form   action="/update?id=<%=product._id%>&&_method=PUT" method="POST" id="form" class="form-horizontal"   enctype="multipart/form-data">
+                          <div class="panel-body">
+
+
+
+<!--/////////////////////////////////////////Product Name///////////////////////////////-->
+
+                                                            <div class="form-group">
+ <label class="col-sm-3 control-label">Product Name <span class="error">*</span></label>
+                                                                <div class="col-sm-9">
+<input type="text" name="productName" class="form-control" value="<%=product.name%>" placeholder="Enter product name" required/>
+                                                                </div>
+                                                            </div>
+
+
+<!--/////////////////////////////////////////Description///////////////////////////////-->
+       <div class="form-group">
+<label class="col-sm-3 control-label">Description <span class="error">*</span></label>
+ <div class="col-sm-9">
+<textarea name="description" rows="5" class="form-control" value="<%=product.description%>"   required><%=product.description%></textarea>
+                                                                </div>
+                                                            </div> 
+
+<!--//////////////////////////////////////Category//////////////////////////////////////-->                                                        
+<!--<p>Selcted Category : <%=product.category%> </p>-->
+<div class="form-group">
+ <label class="col-sm-3 control-label">Category <span class="error">*</span></label>
+ <div class="col-sm-9">
+ 
+<select class="form-control" id="parentCategory" name="category" required >            
+    <option value="" disabled>Select Category</option>
+<%category.forEach(function(category){
+	if(category.categoryName == product.category){%>
+      		<option value="<%=category.categoryName%>" selected><%=category.categoryName%></option>
+      	<%}else{%>
+      	 	<option value="<%=category.categoryName%>"><%=category.categoryName%></option>
+<%}});%>
+      </select>
+    </div>
+   </div>
+
+
+<!--/////////////////////////////////////////Sub category///////////////////////////////-->
+<!--<p>
+  Selected Sub Category :<br>
+
+          &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;  <span><%=//pro%></span><br>
+          <%//})%>
+          <b>Note: Please re-select the Category and sub-Category</b>-->
+</p>
+ <div class="form-group">
+<label class="col-sm-3 control-label">Sub Category <span class="error">*</span></label>
+<div class="col-sm-9">
+<select class="form-control" name="subCategory" id="sub-cat" required multiple="multiple">
+  
+
+        <%category.forEach(function(category){
+              category.subCategory.forEach(function(subCat){
+              if(product.subCategory.length>0)
+              {
+              	      flag = 0;
+		      product.subCategory.forEach(function(pro){
+		      if(subCat == pro){
+		      	flag=1;
+		      %>
+		      	
+		      	<option class="<%=category.categoryName%> allCat" value="<%=subCat%>" selected><%=subCat%></option>
+		      <%
+		      	}
+		      	})
+		      if(flag == 0){%>
+		      	<option class="<%=category.categoryName%> allCat" value="<%=subCat%>"><%=subCat%></option>
+		      <%}	
+		}
+		else
+		{%>
+		  <option class="<%=category.categoryName%> allCat" value="<%=subCat%>"><%=subCat%></option>
+		 <%}
+		      })
+		      })%>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+   <br>
+        <table class="table" id="item-table"> 
+           <thead>
+                                  <tr class="align-center">
+                                  <th width="9.5%">Size</th>
+                                  <th width="16%">Color</th>
+                                   <th width="12%">Price</th>
+                                  <th width="12%">Stock</th>
+                                  <th width="5%">Return</th>
+                                  <th width="5%">Replace</th>
+                                    <th>Image</th>
+<th width="5%"><button class="btn btn-primary w-<%=cnt%> add-new" type="button">+</button></th>
+                                                                                
+                                                                            </tr>
+                                                                        </thead>
+
+                                                                        <tbody>
+<!--/////////////////////////////////////////Image/////////////////////////////////////////-->
+
+<!--///////////////////////////////////Small Size//////////////////////////////////////////-->
+
+<% var cnt=100;%>
+<%var size=['S','M','L','XL','XXL','_3XL','_4XL','_5XL','freeSize']%> 
+ <%for(var i=0;i<size.length;i++){%>
+<%if(product[size[i]].length>0){%>
+<%product[size[i]].forEach(function(pro){%>
+<%cnt++;%>
+                        
+
+                                                              <tr class="tr-shadow">
+                                                                 <td><%=[size[i]]%></td>
+                                                               <td><%=pro.color%></td>
+                                                                 <td><%=pro.price%></td>
+                                                                  <td><%=pro.stock%></td>
+                                                               <td><%=pro.Return%></td>
+                                                               <td><%=pro.replace%></td>             <td>
+                      <div class="row _<%=cnt%>">
+
+<!--Image 1-->
+
+            <div class="col-sm-3 padding-2 img1 align-center">
+                  <%if(pro.image[0]!=null){%>
+                  <span class="outer display-none">
+<input type="file" class="opacity-0 image-upload1" name="img1<%=cnt%>" accept=".jpg,.jpeg,.png" required>
+<i class="fa fa-plus" onclick="upload('._<%=cnt%> .image-upload1','._<%=cnt%> .img1','._<%=cnt%> .image1');"> <br/><br/>Image1 </i>
+                                                                    </span>
+                                                                    <span class="pip">
+                            
+             <img class="image1" src="<%=pro.image[0].substr(7)%>"> <br/>
+
+          <br/><span class="remove" onclick="del('._<%=cnt%> .img1');">Remove</span>
+                                                            </span>
+                <%}
+                else
+                {%>
+                     <span class="outer">
+<input type="file" class="opacity-0 image-upload1" name="img1<%=cnt%>" accept=".jpg,.jpeg,.png" required>
+<i class="fa fa-plus" onclick="upload('._<%=cnt%> .image-upload1','._<%=cnt%> .img1','._<%=cnt%> .image1');"> <br/><br/>Image1 </i>
+                                                                    </span>
+                                    <span class="pip">
+                            
+             <img class="image1" src=""> <br/>
+
+          <br/><span class="remove display-none">Remove</span>
+                                                            </span>
+                <%}%>
+                                                            </div>
+                                                            
+
+
+                                                            
+<!--Image 2-->         
+
+            <div class="col-sm-3 padding-2 img2 align-center">
+                  <%if(pro.image[1]!=null){%>
+                  <span class="outer display-none">
+<input type="file" class="opacity-0 image-upload2" name="img2<%=cnt%>" accept=".jpg,.jpeg,.png" >
+<i class="fa fa-plus" onclick="upload('._<%=cnt%> .image-upload2','._<%=cnt%> .img2','._<%=cnt%> .image2');"> <br/><br/>Image2 </i>
+                                                                    </span>
+                                                                    <span class="pip">
+                            
+             <img class="image2" src="<%=pro.image[1].substr(7)%>"> <br/>
+
+          <br/><span class="remove" onclick="del('._<%=cnt%> .img2');">Remove</span>
+                                                            </span>
+                <%}
+                else
+                {%>
+                     <span class="outer">
+<input type="file" class="opacity-0 image-upload2" name="img2<%=cnt%>" accept=".jpg,.jpeg,.png" >
+<i class="fa fa-plus" onclick="upload('._<%=cnt%> .image-upload2','._<%=cnt%> .img2','._<%=cnt%> .image2');"> <br/><br/>Image2 </i>
+                                                                    </span>
+                                    <span class="pip">
+                            
+             <img class="image2" src=""> <br/>
+
+          <br/><span class="remove display-none">Remove</span>
+                                                            </span>
+                <%}%>
+                                                            </div>
+                                                            
+                        
+
+
+<!--Image 3-->
+                        
+            <div class="col-sm-3 padding-2 img3 align-center">
+                  <%if(pro.image[2]!=null){%>
+                  <span class="outer display-none">
+<input type="file" class="opacity-0 image-upload3" name="img3<%=cnt%>" accept=".jpg,.jpeg,.png" >
+<i class="fa fa-plus" onclick="upload('._<%=cnt%> .image-upload3','._<%=cnt%> .img3','._<%=cnt%> .image3');"> <br/><br/>Image3 </i>
+                                                                    </span>
+                                                                    <span class="pip">
+                            
+             <img class="image3" src="<%=pro.image[2].substr(7)%>"> <br/>
+
+          <br/><span class="remove" onclick="del('._<%=cnt%> .img3');">Remove</span>
+                                                            </span>
+                <%}
+                else
+                {%>
+                     <span class="outer">
+<input type="file" class="opacity-0 image-upload3" name="img3<%=cnt%>" accept=".jpg,.jpeg,.png" >
+<i class="fa fa-plus" onclick="upload('._<%=cnt%> .image-upload3','._<%=cnt%> .img3','._<%=cnt%> .image3');"> <br/><br/>Image3 </i>
+                                                                    </span>
+                                    <span class="pip">
+                            
+             <img class="image3" src=""> <br/>
+
+          <br/><span class="remove display-none">Remove</span>
+                                                            </span>
+                <%}%>
+                                                            </div>
+                                                            
+
+
+            
+
+<!--Image 4-->
+
+            <div class="col-sm-3 padding-2 img4 align-center">
+                  <%if(pro.image[3]!=null){%>
+                  <span class="outer display-none">
+<input type="file" class="opacity-0 image-upload4" name="img4<%=cnt%>" accept=".jpg,.jpeg,.png" >
+<i class="fa fa-plus" onclick="upload('._<%=cnt%> .image-upload4','._<%=cnt%> .img4','._<%=cnt%> .image4');"> <br/><br/>Image4 </i>
+                                                                    </span>
+                                                                    <span class="pip">
+                            
+             <img class="image4" src="<%=pro.image[3].substr(7)%>"> <br/>
+
+          <br/><span class="remove" onclick="del('._<%=cnt%> .img4');">Remove</span>
+                                                            </span>
+                <%}
+                else
+                {%>
+                     <span class="outer">
+<input type="file" class="opacity-0 image-upload4" name="img4<%=cnt%>" accept=".jpg,.jpeg,.png" >
+<i class="fa fa-plus" onclick="upload('._<%=cnt%> .image-upload4','._<%=cnt%> .img4','._<%=cnt%> .image4');"> <br/><br/>Image4 </i>
+                                                                    </span>
+                                    <span class="pip">
+                            
+             <img class="image4" src=""> <br/>
+
+          <br/><span class="remove display-none">Remove</span>
+                                                            </span>
+                <%}%>
+                                                            </div>
+                                             </div>
+                                            </td> 
+                            
+                                                <td class="align-center"> 
+                                                    <i class="fa fa-save add"></i>
+                                                    <i class="fa fa-edit edit"></i>  <br/>
+                                                    <i class="fa fa-remove delete prev_entry"></i>
+                                                </td>
+                                    </tr>
+<%});
+}}%>
+
+
+
+                                   <tr class="spacer"></tr>
+                                                                 <tr class="display-none">
+                                                                       <td id="datastore">
+<!-- This will contain all the data in the table in input format and is generated before add product button is clicked-->
+                                                                                </td>
+                                                                            </tr>
+
+
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <br/>
+                                                        	<input type="hidden" id="numberOfRows" value="<%=cnt-100%>" name="rows">
+       <button class="btn btn-primary" id="submit-button" type="submit">Add Product</button>
+        <button class="btn btn-danger" type="reset" class="btn btn-default">Reset</button>
+                                                    </form>
+
+                                                </div>
+<div class="tab-pane fade" id="custom-nav-profile" role="tabpanel" aria-labelledby="custom-nav-profile-tab">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+	
+	
+    <!-- Jquery JS-->
+    <script src="vendor/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <!-- Vendor JS       -->
+    <script src="vendor/slick/slick.min.js">
+    </script>
+    <script src="vendor/wow/wow.min.js"></script>
+    <script src="vendor/animsition/animsition.min.js"></script>
+    <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+    </script>
+    <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="vendor/counter-up/jquery.counterup.min.js">
+    </script>
+    <script src="vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="vendor/select2/select2.min.js">
+    </script>
+
+    <!-- Main JS-->
+    <script src="js/main.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="js/form-validate.js"></script>
+
+	
+	<script>
+		function del(outer) // outer = "._1 img1 || "._1 img2""
+		{
+			$(outer + ' .outer .input').replaceWith($(outer + ' .outer .input').clone());
+
+		  	$(outer + ' .outer').css('display','inline');
+			$(outer + ' .pip').css('display','none');	
+		
+		}
+		$(document).ready(function(){
+			$('#numberOfRows').val('<%=cnt-100%>');
+			$('#parentCategory').val('<%=product.category%>');
+			$('.prev_entry').click(function(){
+				let no = parseInt($('#numberOfRows').val().trim());
+				$('#numberOfRows').val(no-1);
+				alert($('#numberOfRows').val());
+			});
+			
+			$('.all-menu').removeClass('active');
+			$('.manageProduct').addClass('active');
+		});
+		
+	</script>
+		
+</body>
+
+</html>
+<!-- end document-->

@@ -1,0 +1,236 @@
+
+<!Doctype html>
+<html>
+<body>
+<%- include('header'); %>
+  <!-- breadcrumb start-->
+  <section class="breadcrumb breadcrumb_bg">
+      <div class="container">
+          <div class="row justify-content-center">
+              <div class="col-lg-12">
+                  <div class="breadcrumb_iner">
+                      <div class="breadcrumb_iner_item">
+                          <p>Home/ Shop/ Single Product/ Cart list</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+  <!-- breadcrumb start-->
+<!--Edited Cart-->
+<br>
+
+<center>
+<section class="alignright">
+<div class="row" style="width: 90%;" >
+<div class="col-lg-9" align="left">
+ <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Product</th>
+                <th></th>                
+              </tr>
+            </thead>
+            <tbody>
+<!--    script tag======     -->
+          <%var q%>
+        <script>
+       var a;
+    var total=0;  
+          var tot=[];
+function add(product,i) { 
+    var y=Number(document.getElementById('quantity'+i).value);    
+   y++; 
+    document.getElementById('tot'+i).innerHTML = product*y; 
+    doucument.getElementById("input"+i).value=product*y;
+
+  tot[i]=product*y;
+  ftot();
+}
+function minus(product,i) { 
+    var q=Number(document.getElementById('quantity'+i).value);        
+  if(q!=0)
+  q--;
+  
+    document.getElementById('tot'+i).innerHTML=product*q;
+  doucument.getElementById("input"+i).value=product*q;
+  tot[i]=product*q;
+  ftot();
+}
+function ftot() {
+   total=tot.reduce(function(a,b){
+     return a+b;
+   })
+  document.getElementById('f_tot').innerHTML = total;
+}
+
+  </script>
+<!--forrm to post quantitiy of selected product in cart if quantitiy is zero we will not include it in final bill -->
+        
+<!-- end of form           -->
+        
+        <%var i=0%>
+        <%if(product.length!=0){%>
+      <%product.forEach(function(product){%>        
+              <tr>
+                <td>
+                  <div class="media">
+                    <div class="d-flex" style="width: 20%; height: 20%;">
+                      <img src="<%=product.image%>" alt="" style="height: 20vh; width: 20vh;"/>
+                    </div>  
+                                      
+                      <span style="height: 20%; width: 70%; padding-left: 25px;">
+                        
+                        <span style="color: #0066c0; font-size: 20px;"><%=product.title%>&nbsp; |&nbsp; <%=product.size%></span>
+                        
+                        <br><span style="font-family: Amazon Ember,Arial,sans-serif;color: #007600">In Stock</span>
+                        
+                        <br>₹ <%=product.price%> <br>                       
+                     <p>Color : <%=product.color %></p>
+                        <br>
+                          <!--Quantity-->
+<B>DAYS</B> 
+ <div class="input-group mb-3" style="max-width: 120px;">
+                          <div class="input-group-prepend">
+                            <a class="btn btn-outline-primary " href="/cartaction/<%=product.id%>/-/<%=product.size%>/<%=product.color%>">-</a>
+                          </div>         
+                    
+                          <input type="text" class="form-control text-center" value="<%=product.qty%>" aria-label="Example text with button addon" id="quantity<%=i%>" name="quantity[<%=i%>]" form="form1" readonly />  
+                                
+                          <div class="input-group-append">          
+                          <a class="btn btn-outline-primary" href="/cartaction/<%=product.id%>/+/<%=product.size%>/<%=product.color%>">+</a>
+                          </div>
+                          </div>
+                      
+                          
+                    </span>                    
+                  </div>
+                </td>          
+           <td align="right">
+        <a name="del1" href="/cartaction/<%=product.id%>/delete/<%=product.size%>/<%=product.color%>" class="btn btn-primary"  id="del1">Delete</a>        
+                </td>
+              </tr>
+<%i++%>
+<%});}else{ currentUser.totalPrice=0; %>
+
+              <tr>
+                <td>
+                  <div class="media">
+                    <div class="d-flex">
+                      <h1>
+                        Your Cart is Empty...!!!
+                      </h1>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+<%}%>               
+</tbody></table>
+</div>
+
+<div class="col-lg-3" align="left" style="background-color: #f3f3f3;">
+      <table class="table">
+            <thead>              
+              <tr>               
+                <th>Subtotal</th>                
+                <th id ="f_tot"><%=currentUser.totalPrice%></th>
+              </tr>
+            </thead>
+
+            <tbody>
+      <%var j=0%>
+      <%if(product.length!=0){%>
+      <%product.forEach(function(product){%> 
+            <tr>
+              <td><%=product.title%></td>
+              <td id="tot<%=j%>" name="tot<%=j%>"><%=product.price*product.qty%></td>
+            </tr>
+      <%j++%>
+      <%});}else{%>
+      <tr><td></td></tr>
+      <%}%>
+      <tr>
+        <td>Shipping Details</td>
+        <td>
+          <input type="radio" name="ch" aria-label="Radio button for following text input" disabled="disabled">
+          Flat Rate: Rs 5.00
+          <br>
+          <input type="radio" name="ch" aria-label="Radio button for following text input" disabled="disabled">
+          Free Shipping
+          <br>
+          <input type="radio" name="ch" aria-label="Radio button for following text input" disabled="disabled">
+          Flat Rate: Rs 10.00
+          <br>
+          <input type="radio" name="ch" aria-label="Radio button for following text input" disabled="disabled">
+          Local Delivery: Rs 2.00
+          
+        </td>
+      </tr>
+            </tbody>
+          </table>
+
+</div>
+</div>
+</center>
+</section>
+
+<!--/Edited Cart-->
+<br><br>
+<center>
+<div style="width: 90%;" align="right">
+    <!-- <button class="btn_1" onclick="ftot()">Update Cart</button>
+    <a class="btn_1" href="#">Close Coupon</a> -->
+    <a class="btn_1" href="category">Continue Shopping</a>
+    <%if(currentUser.totalPrice>0){%>
+    <a class="btn_1 checkout_btn_1"  href="/checkout"  value="">  Proceed to checkout</a><%}else{%>
+    <a class="btn_1 checkout_btn_1"  href="/category"  value="">Proceed to checkout</a> 
+    <%}%>
+</div>
+</center>
+
+<br><br><br>
+  <!--================End Cart Area =================-->
+<!-- JS for incerement and decrement-->
+
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script> 
+  <script src="js/aos.js"></script>
+  <script src="js/main.js"></script>
+
+<!-- JS for incerement and decrement-->
+  <!--::footer_part start::-->
+  <%- include('footer'); %>
+
+  <!--::footer_part end::-->
+
+  <!-- jquery plugins here-->
+  <script src="js/jquery-1.12.1.min.js"></script>
+  <!-- popper js -->
+  <script src="js/popper.min.js"></script>
+  <!-- bootstrap js -->
+  <script src="js/bootstrap.min.js"></script>
+  <!-- easing js -->
+  <script src="js/jquery.magnific-popup.js"></script>
+  <!-- swiper js -->
+  <script src="js/swiper.min.js"></script>
+  <!-- swiper js -->
+  <script src="js/mixitup.min.js"></script>
+  <script src="js/price_rangs.js"></script>
+  <!-- particles js -->
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.nice-select.min.js"></script>
+  <!-- slick js -->
+  <script src="js/slick.min.js"></script>
+  <script src="js/jquery.counterup.min.js"></script>
+  <script src="js/waypoints.min.js"></script>
+  <script src="js/contact.js"></script>
+  <script src="js/jquery.ajaxchimp.min.js"></script>
+  <script src="js/jquery.form.js"></script>
+  <script src="js/jquery.validate.min.js"></script>
+  <script src="js/mail-script.js"></script>
+  <!-- custom js -->
+  <script src="js/custom.js"></script>
+</body>
+
+</html>

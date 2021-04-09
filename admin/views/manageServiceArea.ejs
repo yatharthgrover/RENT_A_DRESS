@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
+
+    <!-- Title Page-->
+    <title>Manage Service Area</title>
+
+    <!-- Fontfaces CSS-->
+    <link href="css/font-face.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+    <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" href="vendor/bootstrap-4.1/bootstrap.css" media="all">
+
+    <!-- Vendor CSS-->
+    <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="css/theme.css" rel="stylesheet" media="all">
+    <link href="css/custom.css" rel="stylesheet" media="all">
+
+</head>
+
+<body class="animsition">
+    
+        <!-- HEADER MOBILE-->
+       
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+            <!-- HEADER DESKTOP-->
+    <%- include('header'); %>   
+
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+									<div class="card-header">
+										<h4>Manage Service Area</h4>
+									</div>
+									<div class="card-body">
+										<div class="custom-tab">
+
+											<nav>
+												<div class="nav nav-tabs" id="nav-tab" role="tablist">
+													<a class="nav-item nav-link active" id="custom-nav-home-tab" data-toggle="tab" href="#custom-nav-home" role="tab" aria-controls="custom-nav-home"
+													 aria-selected="true">Manage States</a>
+													<a class="nav-item nav-link" id="custom-nav-profile-tab" data-toggle="tab" href="#custom-nav-profile" role="tab" aria-controls="custom-nav-profile"
+													 aria-selected="false">Manage City</a>
+												</div>
+											</nav>
+											<div class="tab-content pl-3 pt-2" id="nav-tabContent">
+												<div class="tab-pane fade show active" id="custom-nav-home" role="tabpanel" aria-labelledby="custom-nav-home-tab">
+                                                    
+                                                    <form id="form1" action="forms-validation.html" class="form-horizontal">
+                                                        <table class="table table-data2" id="searchTable">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>No.</th>
+                                                                    <th>State Name</th>
+                                                                    <th></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr class="tr-shadow">
+                                                                    <td>...</td>
+                                                                    <td>
+                                                                        <input type="text" name="statename" class="form-control" placeholder="Enter State name" required/>
+                                                                    </td>
+                                                                    <td>
+                                                                        <button class="btn btn-primary w-100" type="submit">Add</button>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="spacer"></tr>
+                                                                <tr class="tr-shadow">
+                                                                    <td>1.</td>
+                                                                    <td>State Name</td>
+                                                                    <td>
+                                                                        <label class="switch switch-3d switch-primary mr-3">
+                                                                            <input type="checkbox" class="switch-input" checked="true">
+                                                                            <span class="switch-label"></span>
+                                                                            <span class="switch-handle"></span>
+                                                                          </label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="spacer"></tr>
+                                                                <tr class="tr-shadow">
+                                                                    <td>2.</td>
+                                                                    <td>State Name</td>
+                                                                    <td>
+                                                                        <label class="switch switch-3d switch-primary mr-3">
+                                                                            <input type="checkbox" class="switch-input" checked="true">
+                                                                            <span class="switch-label"></span>
+                                                                            <span class="switch-handle"></span>
+                                                                          </label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="spacer"></tr>
+                                                                <tr class="tr-shadow">
+                                                                    <td>3.</td>
+                                                                    <td>State Name</td>
+                                                                    <td>
+                                                                        <label class="switch switch-3d switch-primary mr-3">
+                                                                            <input type="checkbox" class="switch-input" checked="true">
+                                                                            <span class="switch-label"></span>
+                                                                            <span class="switch-handle"></span>
+                                                                          </label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="spacer"></tr>
+                                                                <tr class="tr-shadow">
+                                                                    <td>4.</td>
+                                                                    <td>State Name</td>
+                                                                    <td>
+                                                                        <label class="switch switch-3d switch-primary mr-3">
+                                                                            <input type="checkbox" class="switch-input" checked="true">
+                                                                            <span class="switch-label"></span>
+                                                                            <span class="switch-handle"></span>
+                                                                          </label>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        </form>
+
+
+												</div>
+												<div class="tab-pane fade" id="custom-nav-profile" role="tabpanel" aria-labelledby="custom-nav-profile-tab">
+                                                    
+                                                    <form id="form1" action="forms-validation.html" class="form-horizontal">
+                                                        <table class="table table-data2" id="searchTable">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>No.</th>
+                                                                    <th>State Name</th>
+                                                                    <th>City Name</th>
+                                                                    <th></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr class="tr-shadow">
+                                                                    <td>...</td>
+                                                                    <td>
+                                                                        <select class="form-control" name="state" required>
+                                                                            <option value="">Select State</option>
+                                                                            <option value="State 1">State 1</option>
+                                                                            <option value="State 2">State 2</option>
+                                                                            <option value="State 3">State 3</option>
+                                                                            <option value="State 4">State 4</option>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="text" name="cityName" class="form-control" placeholder="Enter City name" required/>
+                                                                    </td>
+                                                                    <td>
+                                                                        <button class="btn btn-primary w-100" type="submit">Add</button>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="spacer"></tr>
+                                                                <tr class="tr-shadow">
+                                                                    <td>1.</td>
+                                                                    <td>State Name</td>
+                                                                    <td>City Name</td>
+                                                                    <td>
+                                                                        <label class="switch switch-3d switch-primary mr-3">
+                                                                            <input type="checkbox" class="switch-input" checked="true">
+                                                                            <span class="switch-label"></span>
+                                                                            <span class="switch-handle"></span>
+                                                                          </label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="spacer"></tr>
+                                                                <tr class="tr-shadow">
+                                                                    <td>2.</td>
+                                                                    <td>State Name</td>
+                                                                    <td>City Name</td>
+                                                                    <td>
+                                                                        <label class="switch switch-3d switch-primary mr-3">
+                                                                            <input type="checkbox" class="switch-input" checked="true">
+                                                                            <span class="switch-label"></span>
+                                                                            <span class="switch-handle"></span>
+                                                                          </label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="spacer"></tr>
+                                                                <tr class="tr-shadow">
+                                                                    <td>3.</td>
+                                                                    <td>State Name</td>
+                                                                    <td>City Name</td>
+                                                                    <td>
+                                                                        <label class="switch switch-3d switch-primary mr-3">
+                                                                            <input type="checkbox" class="switch-input" checked="true">
+                                                                            <span class="switch-label"></span>
+                                                                            <span class="switch-handle"></span>
+                                                                          </label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="spacer"></tr>
+                                                                <tr class="tr-shadow">
+                                                                    <td>4.</td>
+                                                                    <td>State Name</td>
+                                                                    <td>City Name</td>  
+                                                                    <td>
+                                                                        <label class="switch switch-3d switch-primary mr-3">
+                                                                            <input type="checkbox" class="switch-input" checked="true">
+                                                                            <span class="switch-label"></span>
+                                                                            <span class="switch-handle"></span>
+                                                                          </label>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        </form>
+
+
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="vendor/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <!-- Vendor JS       -->
+    <script src="vendor/slick/slick.min.js">
+    </script>
+    <script src="vendor/wow/wow.min.js"></script>
+    <script src="vendor/animsition/animsition.min.js"></script>
+    <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+    </script>
+    <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="vendor/counter-up/jquery.counterup.min.js">
+    </script>
+    <script src="vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="vendor/select2/select2.min.js">
+    </script>
+
+    <!-- Main JS-->
+    <script src="js/main.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="js/form-validate.js"></script>
+    
+    <script>
+		$(document).ready(function(){
+			$('.all-menu').removeClass('active');
+			$('.manageServiceArea').addClass('active');
+		});
+		
+	</script>
+
+</body>
+
+</html>
+<!-- end document-->

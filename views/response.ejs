@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<style type="text/css">
+	.main {
+		margin-left:30px;
+		font-family:Times New Roman, Verdana, Geneva, sans-serif, serif;
+	}
+	.text {
+		float:left;
+		width:180px;
+	}
+	.dv {
+		margin-bottom:5px;
+	}
+</style>
+<body>
+    <%- include('header'); %>
+    <center>
+        <section class="login_part section_padding">
+        <div class="container">
+
+            <div class="row align-items-center">
+                <div class="col-lg-12 col-md-12">
+                    <div class="login_part_form">
+                        <div class="login_part_form_iner">
+                           <div class="order_box">
+<h1><u>Billing Details</u></h1><br>
+<table width="1000vh">
+    <th></th>    <th></th>
+    
+    <tr>
+        <td class="col-md-12 form-group p_star"><label>Transaction/Order ID  </label></td>
+        <td><%= txnid %></td>
+    </tr>
+         
+    <tr>
+        <td class="col-md-12 form-group p_star"><label>Amount</label></td>
+        <td><%= amount %></td>
+    </tr>
+
+    <tr>
+        <td class="col-md-12 form-group p_star"><label>Product Info  </label></td>
+        <td><%= productinfo %></td>
+    </tr>
+
+    <tr>
+        <td class="col-md-12 form-group p_star"><label>First Name  </label></td>
+        <td><%= firstname %></td>
+    </tr>
+
+    <tr>
+        <td class="col-md-12 form-group p_star"><label>Email ID</label></td>
+        <td><%= email %></td>
+    </tr>
+
+    <tr>
+        <td class="col-md-12 form-group p_star"><label>Mihpayid </label></td>
+        <td><%= mihpayid %></td>
+    </tr>
+    
+    <tr>
+        <td class="col-md-12 form-group p_star"><label>Transaction Status</label></td>
+        <td><%= status %></td>
+    </tr>
+
+    <tr>
+        <td class="col-md-12 form-group p_star"><label>Message</label></td>
+        <td><%= msg %></td>
+    </tr>
+
+    <tr>
+        <td colspan="2" align="center"><div class="col-md-12 form-group p_star"><a href="http://localhost:5000" alt="New Order" class="btn_3">New Order</a></div></td>   
+
+    </tr>
+
+</table></div>
+</div></div></div></div></section></center>
+<%- include('footer'); %>
+</body>
+</html>
+	

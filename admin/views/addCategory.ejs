@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <!-- Title Page-->
+    <title>Add Category</title>
+    
+</head>
+
+<body class="animsition">
+   
+        <!-- MENU SIDEBAR-->
+        
+        <!-- END MENU SIDEBAR-->
+
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+            <!-- HEADER DESKTOP-->
+   <%- include('header'); %>    
+
+            <!-- HEADER DESKTOP-->
+            <div class="main-content">
+                <%if(message.length>0){%>
+                    <div class="alert alert-success " role="alert">
+                        <%message.forEach(function(message){%>
+                        <p class="text-center">
+                            <%=message%>
+                        </p>
+                        <%});%>                        
+                    </div>  
+                <%}%>
+
+            <!-- MAIN CONTENT-->
+            
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+									<div class="card-header">
+										<h4>Add Category</h4>
+									</div>
+									<div class="card-body">
+										<div class="custom-tab">
+											<div class="tab-content pl-3 pt-2" id="nav-tabContent">
+												<div class="tab-pane fade show active" id="custom-nav-home" role="tabpanel" aria-labelledby="custom-nav-home-tab">
+									                <form id="form" action="/addCategory"  method="post" class="form-horizontal" enctype="multipart/form-data">
+                                                        <div class="panel-body">
+                                                            <div class="form-group">
+                                                                <label class="col-sm-3 control-label">Category Name <span class="error">*</span></label>
+                                                                <div class="col-sm-9">
+                                                                    <input type="text" name="categoryName" class="form-control" placeholder="Enter Category Name" required/>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-3 control-label">Category Image <span class="error">*</span></label>
+                                                                <div class="row">
+                                                                    <div class="col-sm-3 image-input">
+                                                                        <div class="file-upload" id="file-upload1">
+                                                                            <div class="image-upload-wrap" id="image-upload-wrap1">
+                                                                                <input class="file-upload-input" id="file-upload-input1" type='file' name="image" onchange="readURL1(this);" accept="image/*" required/>
+                                                                                <div class="drag-text">
+                                                                                        <h3><br/>Image 1</h3>
+                                                                                </div>
+                                                                            </div>
+                                                                            <br/>
+                                                                            <div class="file-upload-content" id="file-upload-content1">
+                                                                            <img class="file-upload-image" id="file-upload-image1" src="#" alt="your image" />
+                                                                            <div class="image-title-wrap" id="image-title-wrap1">
+                                                                                    <button type="button" onclick="removeUpload1()" class="remove-image">Remove <span class="image-title">Image</span></button>
+                                                                            </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <button class="file-upload-btn" id="file-upload-btn1" type="button" onclick="$('#file-upload-input1').trigger( 'click' );">Upload</button>
+                                                                    </div>        
+                                                                </div>
+                                                                <div class="form-group">
+                                                            	<table class="table" id="item-table"> 
+                                                                        <thead>
+                                                                            <tr class="align-center">
+                                                                                <th width="9.5%">Sub Category Name</th>
+                                                                                <th width="5%"><button class="btn btn-primary w-25 add-new-cat" type="button">+</button></th>
+                                                                                
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody class="align-center">
+                                                                            <tr class="display-none">
+                                                                            	<td id="datastore">
+                                                                        <!-- This will contain all the data in the table in input format and is generated before add product button is clicked-->
+                                                                            	</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                            	</div>
+                                                            </div> 
+                                                            <br/>   
+                                                            <button class="btn btn-primary" type="submit">Add Category</button>
+                                                            <button class="btn btn-danger" type="reset" class="btn btn-default">Reset</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- Jquery JS-->
+    <script src="vendor/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <!-- Vendor JS       -->
+    <script src="vendor/slick/slick.min.js">
+    </script>
+    <script src="vendor/wow/wow.min.js"></script>
+    <script src="vendor/animsition/animsition.min.js"></script>
+    <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+    </script>
+    <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="vendor/counter-up/jquery.counterup.min.js">
+    </script>
+    <script src="vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="vendor/select2/select2.min.js">
+    </script>
+
+    <!-- Main JS-->
+    <script src="js/main.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="js/form-validate.js"></script>
+
+	<script>
+		$(document).ready(function(){
+			$('.all-menu').removeClass('active');
+			$('.manageCategory').addClass('active');
+		});
+		
+	</script>
+	
+	
+</body>
+
+</html>
+<!-- end document-->

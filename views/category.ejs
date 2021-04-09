@@ -1,0 +1,527 @@
+<!Doctype html>
+<html>
+<head>
+    
+<style type="text/css">
+
+    #myList li
+    { 
+        display: none;
+    }
+    
+    .grid-container {
+        display: grid;
+        grid-template-columns: auto auto auto;
+    }
+    
+    .grid-item {
+        width: 100%;
+        padding: 10px;  
+    }
+    .pro{
+        height: 50vh;    
+        width: 30vh;
+    }
+    
+    .price-range-slider {
+    width:100%;
+  float:left;
+  padding:10px 20px;
+    .range-value {
+        margin:0;
+        input {
+            width:100%;
+            background:none;
+            color: #000;
+            font-size: 16px;
+            font-weight: initial;
+            box-shadow: none;
+            border: none;
+            margin: 20px 0 20px 0;
+        }
+    }
+    
+    .range-bar {
+        border: none;
+        background: #000;
+        height: 3px;    
+        width: 96%;
+        margin-left: 8px;
+        
+        .ui-slider-range {
+            background:#06b9c0;
+        }
+        
+        .ui-slider-handle {
+            border:none;
+            border-radius:25px;
+            background:#fff;
+            border:2px solid #06b9c0;
+            height:17px;
+            width:17px;
+            top: -0.52em;
+            cursor:pointer;
+        }
+        .ui-slider-handle + span {
+            background:#06b9c0;
+        }
+    }
+}
+
+  </style>
+
+</head>
+<link rel="stylesheet" href="http://www.jqueryscript.net/css/jquerysctipttop.css" type="text/css">
+<body>
+<%- include('header'); %>
+
+    <!--================Home Banner Area =================-->
+    <!-- breadcrumb start-->
+    <section class="breadcrumb breadcrumb_bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="breadcrumb_iner">
+                        <div class="breadcrumb_iner_item">
+                            <p>Home / Category</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <%if(message.length>0){%>
+                    <div class="alert alert-success " role="alert">
+  <%message.forEach(function(message){%>
+                        <p class="text-center">
+                            <%=message%>
+                        </p>
+                        <%});%>
+                        
+</div>  <%}%>
+    <!-- breadcrumb start-->
+
+    <!--================Category Product Area =================-->
+    <section class="cat_product_area section_padding border_top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="left_sidebar_area">
+                        <aside class="left_widgets p_filter_widgets price_rangs_aside sidebar_box_shadow">
+                            <div class="l_w_title">
+                                <h3>Price Filter</h3>
+                            </div>
+                            <div class="widgets_inner">
+                                <div class="range_item">
+                                    <!-- <div id="slider-range"></div> -->
+                                    <input type="text" class="js-range-slider" value="" />
+                                    <div class="d-flex align-items-center">
+                                        <div class="price_text">
+                                            <p>Price :</p>
+                                        </div>
+                                        <div class="price_value d-flex justify-content-center" style="font-size:11px !important;">
+                                            <input type="text" class="priceRange js-input-from" id="amount" />
+                                            <span>to </span>&nbsp;
+                                            <input type="text" class="priceRange js-input-to" id="amount" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </aside>
+                        <aside class="left_widgets p_filter_widgets sidebar_box_shadow">
+                            <div class="l_w_title">
+                                <h3>Product filters</h3>
+                            </div>
+                            <div class="widgets_inner sections" id='filters'>
+                                 <ul class="list filter-attributes">
+                                    <p>Category</p>
+                                    <%category.forEach(function(name){%>
+                                    <li>
+                                        <input type="checkbox" aria-label="Radio button for following text input" name="shape" value="<%=name.categoryName%>" id="<%=name.categoryName%>">
+                                        <a href="#"><%=name.categoryName%></a>
+                                    </li>
+                                    <%})%>
+                                </ul>
+                                <ul class="list filter-attributes">
+                                    <p>color</p>
+                                    <li>
+                                        <input type="checkbox" aria-label="Radio button for following text input" name="colour" value="Red" id="Red">
+                                        <a href="#">Red</a>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" aria-label="Radio button for following text input" name="colour" value="Blue" id="Blue">
+                                        <a href="#">Blue</a>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" aria-label="Radio button for following text input" name="colour" value="Black" id="Black">
+                                        <a href="#">Black</a>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" aria-label="Radio button for following text input" name="colour" value="White" id="White">
+                                        <a href="#">White</a>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" aria-label="Radio button for following text input" name="colour" value="Pink" id="Pink">
+                                        <a href="#">Pink</a>
+                                    </li>
+                                </ul>
+                                <ul class="list filter-attributes">
+                                    <p>Size</p>
+                        <%var size=['S','M','L','XL','XXL','_3XL','_4XL','_5XL','freeSize']%> 
+                                        <%for(var i=0;i<size.length;i++){%>
+                                    <li>
+                                        <input type="checkbox" aria-label="Radio button for following text input" name="size" value="<%=size[i]%>" id="<%=size[i]%>">
+                                        <a href="#"><%=size[i]%></a>
+                                    </li>
+                                    <%}%>
+                                    
+                                </ul>
+                                <br/>
+                                <input type='button' id='none' value='Clear all'/>
+                            </div>
+                        </aside>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="row sections">
+                        <div class="col-lg-12">
+                            <div class="product_top_bar d-flex justify-content-between align-items-center">
+                                <div class="single_product_menu product_bar_item">
+                                    <h2>Women</h2>
+                                </div>
+                                <div class="product_top_bar_iner product_bar_item d-flex">
+                                    <div class="product_bar_single">
+                                        <select class="wide" id="sorting">
+                                            <option data-display="Default sorting" selected disabled>Default sorting</option>
+                                            <option value="0">Low to High</option>
+                                            <option value="1">High to Low</option>
+                                        </select>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                        </div>
+        </div>
+<!--Product Area -->
+    <div class="row sections" id="content">
+        <%var size=['S','M','L','XL','XXL','_3XL','_4XL','_5XL','freeSize']%> 
+      <%for(var i=0;i<size.length;i++){%>
+            <%Product.forEach(function(product){%>
+                        <%if(product[size[i]].length>0){%>   
+                            <div class="col-lg-4 col-sm-6 grid-products">
+                                <%product.S.forEach(function(name){%>
+                                    <div class='grid-variants' data-shape="<%=product.category%>" data-colour='<%=name.color.trim()%>' data-size='S'></div>
+                                <%})%>
+                                <%
+                                    if(product.M.length>0)
+                                    {
+                                        product.M.forEach(function(name){%>
+                                            <div class='grid-variants' data-shape="<%=product.category%>" data-colour='<%=name.color.trim()%>' data-size='M'></div>
+                                       <% })
+
+                                    }
+                                
+                                %>
+                                <%
+                                    if(product.L.length>0)
+                                    {
+                                        product.L.forEach(function(name){%>
+                                            <div class='grid-variants' data-shape="<%=product.category%>" data-colour='<%=name.color.trim()%>' data-size='L'></div>
+                                       <% })
+
+                                    }
+                                
+                                %>
+                                <%
+                                    if(product.XL.length>0)
+                                    {
+                                        product.XL.forEach(function(name){%>
+                                            <div class='grid-variants' data-shape="<%=product.category%>" data-colour='<%=name.color.trim()%>' data-size='XL'></div>
+                                       <% })
+
+                                    }
+                                
+                                %>
+                                <%
+                                    if(product.XXL.length>0)
+                                    {
+                                        product.XXL.forEach(function(name){%>
+                                            <div class='grid-variants' data-shape="<%=product.category%>" data-colour='<%=name.color.trim()%>' data-size='XXL'></div>
+                                       <% })
+
+                                    }
+                                
+                                %>
+                                <%
+                                    if(product._3XL.length>0)
+                                    {
+                                        product._3XL.forEach(function(name){%>
+                                            <div class='grid-variants' data-shape="<%=product.category%>" data-colour='<%=name.color.trim()%>' data-size='_3XL'></div>
+                                       <% })
+
+                                    }
+                                
+                                %>
+                                <%
+                                    if(product._4XL.length>0)
+                                    {
+                                        product._4XL.forEach(function(name){%>
+                                            <div class='grid-variants' data-shape="<%=product.category%>" data-colour='<%=name.color.trim()%>' data-size='_4XL'></div>
+                                       <% })
+
+                                    }
+                                
+                                %>
+                                <%
+                                    if(product._5XL.length>0)
+                                    {
+                                        product._5XL.forEach(function(name){%>
+                                            <div class='grid-variants' data-shape="<%=product.category%>" data-colour='<%=name.color.trim()%>' data-size='_5XL'></div>
+                                       <% })
+
+                                    }
+                                
+                                %>
+                                <%
+                                    if(product.freeSize.length>0)
+                                    {
+                                        product.freeSize.forEach(function(name){%>
+                                            <div class='grid-variants' data-shape="<%=product.category%>" data-colour='<%=name.color.trim()%>' data-size='freeSize'></div>
+                                       <% })
+
+                                    }
+                                
+                                %>
+
+                            <div class="single_category_product">
+                                <div class="single_category_img">
+                                    <a href="/singleProduct?id=<%=product._id%>&size=<%=size[i]%>">
+                                        <img src="<%=product[size[i]][0].image[0]%>" alt="" class="pro">
+                                    </a>
+                                    <div class="category_social_icon">
+                                        <ul>
+                                            <li><a href="#"><i class="ti-heart"></i></a></li>                                    <%if(currentUser){%>
+                                            <li><a href="/cart/<%=product._id%>/<%=size[i]%>/<%=product[size[i]][0].color%>"><i class="ti-bag"></i></a></li><%}else{%><li><a href="/signup"><i class="ti-bag"></i></a></li><%}%>
+                                        </ul>
+                                    </div>
+                                    <div class="category_product_text">
+                                        <a href="/singleProduct?id=<%=product._id%>&size=<%=size[i]%>"><h5><%=product.name%></h5></a>
+                                        <p class="price" data-price="<%=product[size[i]][0].price%>"><%=product[size[i]][0].price%></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <%}
+                    });}%>
+                        <!-- ======m  products======== -->
+        </div>
+
+<!--product area ends-->
+
+                        <div class="col-lg-12 text-center">
+                            <a class="btn_2" id="loadMore">More Items</a>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Category Product Area =================-->
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- free shipping here -->
+    <!-- <section class="shipping_details section_padding border_top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single_shopping_details">
+                        <img src="img/icon/icon_1.png" alt="">
+                        <h4>Free shipping</h4>
+                        <p>Divided face for bearing the divide unto seed winged divided light Forth.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single_shopping_details">
+                        <img src="img/icon/icon_2.png" alt="">
+                        <h4>Free shipping</h4>
+                        <p>Divided face for bearing the divide unto seed winged divided light Forth.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single_shopping_details">
+                        <img src="img/icon/icon_3.png" alt="">
+                        <h4>Free shipping</h4>
+                        <p>Divided face for bearing the divide unto seed winged divided light Forth.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single_shopping_details">
+                        <img src="img/icon/icon_4.png" alt="">
+                        <h4>Free shipping</h4>
+                        <p>Divided face for bearing the divide unto seed winged divided light Forth.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <!-- free shipping end -->
+    <script>
+    function filterPriceRange(min,max)
+    {
+        $('p[data-price]').each(function() {
+            var dPrice = parseInt($(this).attr('data-price'));
+            if ( dPrice < min || dPrice > max )
+            {
+                $(this).closest('.grid-products').css('opacity','0');
+                    $(this).closest('.grid-products').css('position','absolute');
+                }
+            else
+            {
+                $(this).closest('.grid-products').css('opacity','1');
+                    $(this).closest('.grid-products').css('position','static');
+                }
+            });
+        
+    }
+    function filterByPrice()
+    {
+            let min = $('.js-input-from').val().trim();
+        let max = $('.js-input-to').val().trim();
+        filterPriceRange(min,max);
+    }
+    </script>
+    
+    <!--::footer_part start::-->
+    <%- include('footer'); %>
+    <!--::footer_part end::-->
+       <script >
+
+        function ProductFilterLevel2(products, variants, filters) {
+            var _this = this;
+          
+            this.init = function() {
+              this.products = products;
+              this.variants = variants;
+              this.filters = filters;
+              this.bindEvents();
+            };
+          
+            this.bindEvents = function() {
+              this.filters.click(this.filterGridProducts);
+              $('#none').click(this.removeAllFilters);
+            };
+          
+            this.filterGridProducts = function() {
+              //hide all
+              _this.products.hide();
+              var filteredProducts = _this.variants;
+              //filter by colour, size, shape etc
+              var filterAttributes = $('.filter-attributes'); 
+              // for each attribute check the corresponding attribute filters selected
+              filterAttributes.each(function(){
+                var selectedFilters = $(this).find('input:checked');
+                // if selected filter by the attribute
+                if (selectedFilters.length) {
+                  var selectedFiltersValues = [];
+                  selectedFilters.each(function() {
+                    var currentFilter = $(this);
+                    selectedFiltersValues.push("[data-" + currentFilter.attr('name') + "='" + currentFilter.val() + "']");
+                  });
+                  filteredProducts = filteredProducts.filter(selectedFiltersValues.join(','));
+                }
+              });
+                filteredProducts.parent().show();
+            };
+          
+            this.removeAllFilters = function() {
+              _this.filters.prop('checked', false);
+              _this.products.show();
+            }
+        }
+        
+         function sort(desc) {
+      var content = document.querySelector('#content');
+      var els = Array.prototype.slice.call(document.querySelectorAll('#content > div'));
+      var cls = 'price';
+
+      els.sort(function(a, b) {
+        na = parseInt(a.querySelector('.' + cls).innerHTML);
+        nb = parseInt(b.querySelector('.' + cls).innerHTML);
+        return desc ? (nb - na) : (na - nb);
+      });
+
+      els.forEach(function(el) {
+        content.appendChild(el);
+      });
+    }
+    
+    
+
+    $(document).ready(function () {
+        //alert("size_li " + $( "#myList li" ).length);
+        let flag=1;
+        size_li = $("#myList li").length;        
+        x=27;
+        $('#myList li:lt('+x+')').show();
+        
+        $('#loadMore').click(function () 
+        {
+            x= (x+27 <= size_li) ? x+27 : size_li;
+            $('#myList li:lt('+x+')').show();
+        });
+        
+       
+        
+        
+        $('#sorting').change(function(){
+            let val = $('#sorting').val().trim();
+            if(val == 0)
+            {
+                sort(false);
+            }
+            else
+            {
+                sort(true);
+            }   
+        });
+        
+        var $products = $('.grid-products'),
+      $variants = $('.grid-variants'),
+      $filters = $("#filters input[type='checkbox']"),
+      product_filter = new ProductFilterLevel2($products, $variants, $filters);
+  product_filter.init();
+        
+    });
+            
+           
+    </script>
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-36251023-1']);
+        _gaq.push(['_setDomainName', 'jqueryscript.net']);
+        _gaq.push(['_trackPageview']);
+      
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+      
+      </script>
+      
+      
+</body>
+
+</html>

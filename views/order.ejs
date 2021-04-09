@@ -1,0 +1,98 @@
+<!Doctype html>
+<html>
+<head>
+
+	<style type="text/css">
+		.image{			
+			border-radius: 10px;
+			box-shadow: 3px 3px 3px 3px;
+		}
+		.head{
+			background-color: #e9ecef; 
+			color: black;
+			
+		}
+		.para{
+			
+			font-size: 100%;
+			color: black;
+			font-family: Times New Roman;		
+		}
+
+	</style>
+</head>
+<body>
+	<%- include('header'); %>
+	
+	<img src="images/about.jpg" width="100%" style="height: 50%;">
+
+	<section class="breadcrumb breadcrumb_bg">
+      <div class="container">
+          <div class="row justify-content-center">
+              <div class="col-lg-12">
+                  <div class="breadcrumb_iner">
+                      <div class="breadcrumb_iner_item">
+                          <p>Home / Order</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  
+
+<br>
+<br>
+	<center>
+		
+
+    <%var orders=orderedItem.reverse();%>
+    <%orders.forEach(function(eachOrder){%>
+        <%eachOrder.item.forEach(function(item){%>
+
+         <table width="75%" align="center" class="image">
+			<tr>
+				<tr class="head"><td colspan = "3">
+					<div style="padding-top: 1%; padding-left: 1%">Order Placed Successfully<br><%=eachOrder.orderDate.substr(0,15)%></div>
+					<div style="padding-right: 1%; " align="right">Order Id :<%=eachOrder.orderId%></div>
+				</td></tr>
+
+				<td style="width: 15%;" align="left">
+					<img src="<%=item.image%>" style="height: 20vh; width: 20vh;">
+				</td>
+				<td align="center" width="30%">
+					<p align="left" class="para">
+					<%=item.title%> | <%=item.size%><br>
+					status : <%=eachOrder.status%> <br>
+					Price : <%=item.price*item.qty%> Rs.<br>
+					Quantity: <%=item.qty%>
+				</p>
+				</td>
+				<td width="25%" align="center">
+					<br>
+					<a class="btn_3" href="">Return & Replace</a>
+					<br><br>
+					<a class="btn_3" href="tracking">Tracking</a>
+					<br><br>
+					<a class="btn_3" href="">Return Status</a>	
+					<br><br>		
+				</td>
+			</tr>
+		</table>
+			<br>
+
+        <%});%>
+      
+
+
+<%})%>			
+	</center>
+
+<br>
+<br>
+
+
+	<%- include('footer'); %>
+</body>
+</html>

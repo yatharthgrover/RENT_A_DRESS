@@ -1,0 +1,292 @@
+
+<!Doctype html>
+<html>
+<head>
+  <style type="text/css">
+   #myList li
+    { 
+        display: none;
+    } 
+    .st1{          
+      padding-bottom: 30px;
+    }
+  </style>
+   
+</head>
+
+<body>
+<%- include('header'); %>
+  <!--================Home Banner Area =================-->
+  <!-- breadcrumb start-->
+  <img src="images/index.jpg" alt="Banner" width="100%">
+  <section class="breadcrumb breadcrumb_bg">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-12">
+          <div class="breadcrumb_iner">
+            <div class="breadcrumb_iner_item">
+              <p>Home / Cart / Checkout</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- breadcrumb start-->
+ <%if(message.length>0){%>
+          <div class="alert alert-danger " role="alert">
+  <%message.forEach(function(message){%>
+            <p class="text-center">
+              <%=message%>
+            </p>
+            <%});%>
+            
+</div>  <%}%>
+  <!--================Checkout Area =================-->
+<br><br><br>
+    <div class="container"> 
+      <!--Coupon Code-->
+      <div class="cupon_area">
+        <div class="check_title">
+          <h2>
+            Have a coupon?
+            <a href="#">Click here to enter your code</a>
+          </h2>
+        </div>
+        <input type="text" placeholder="Enter coupon code" />
+        <a class="tp_btn" href="#">Apply Coupon</a>
+      </div>
+      <!--/Coupon Code-->
+    </div>
+
+<br><br>
+<center>   
+<section class="alignright">
+<div class="row" style="width: 80%;">
+
+<!--Original Address-->
+  <div class="col-lg-6 display1" align="left">
+    <center><h4><b style="font-family: Times New Roman;">Your Address<hr></b></h4>
+    
+  <p style="font-size: 15px;font-family: Times New Roman;">Select Address For Delivery</p>
+
+<div class="container">
+  <table bgcolor="#f4f4f4" width="100%">
+    <thead>
+      <th></th>
+      <th></th>
+    </thead>
+    <tbody>
+         <%address.forEach(function(address){%>   
+<tr>
+<td align="center" width="20%" class="st1">
+<input type="radio" id="f-option"  placeholder="Enter coupon code" name="address" value="<%=address._id%>" form="form1" checked><br>
+</td>
+<td style="font-family: Times New Roman" class="st1"><b><%=address.fullName%></b><br>
+<%=address.address%><br>
+<%=address.city%><br>
+District : <%=address.district%><br>
+PinCode : <%=address.zipCode%> &emsp;&emsp; Contact No. : <%=address.number%></td>
+</tr>
+
+         <%})%>
+
+         </tbody>
+         </table>
+   </div>
+        <br>  
+    <button id="addAddress" class="form-control tp_btn">Add Address</button><br>
+      </center>
+  </div>
+
+
+  <!--New Address-->
+  <div class="col-lg-6 hide1">     
+      <div class="billing_details aligncenter">
+        <div class="row" id="billDetails">
+          <div class="col-lg-12" >
+            <h3>Add Your Address</h3>
+
+            <form class="row contact_form" action="/addAddress" method="post" align="center">
+
+              <div class="col-md-6 form-group p_star">
+                <input type="text" class="form-control" id="first" name="fullName" placeholder="full name" required>
+                
+              </div>
+             
+              <div class="col-md-6 form-group p_star">
+                <input type="number" class="form-control" id="number" name="number" placeholder="Phone number" min=6000000000 max=9999999999 required>
+              </div>
+              <div class="col-md-6 form-group p_star">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" required>
+              </div>
+              
+              <div class="col-md-12 form-group p_star">
+                <input type="text" class="form-control" id="add1" name="address" placeholder="Address line 01" required>
+              </div>
+              <div class="col-md-12 form-group p_star">
+                <input type="text" class="form-control" id="city" name="city" placeholder="Town/City" required>
+              </div>
+              <div class="col-md-12 form-group p_star">
+                <input type="text" class="form-control" id="district" name="district" placeholder="District" required>
+              </div>
+              <div class="col-md-12 form-group">
+                <input type="number" class="form-control" id="zip" name="zipCode" placeholder="Postcode/ZIP" required>
+              </div>
+			  <div>
+			  <P>ENTER DETAILS FOR THE RETURN OF THE SECURITY AMOUNT</P>
+			  </div>
+			 
+			  <div class="col-md-12 form-group">
+                <input type="number" class="form-control" id="accno" name="accno" placeholder="Bank Account Number" required>
+              </div>
+			  <div class="col-md-12 form-group">
+                <input type="text" class="form-control" id="accholdname" name="accholdname" placeholder="Account Holder Name" required>
+              </div>
+			  <div class="col-md-12 form-group">
+                <input type="text" class="form-control" id="ifsc" name="ifsc" placeholder="Bank IFSC Code" required>
+              </div>
+			  
+              <div class="col-md-12 form-group">
+                <div class="creat_account">
+                  
+                 </div>
+              </div>
+              <div class="col-md-12 form-group">
+                <div class="creat_account">
+                  
+                  </div>
+              </div>
+              <input type="submit" name="submit" class="form-control tp_btn">
+            </form>
+            <hr><br><br><br><br><br>
+            <button class="form-control tp_btn showadd">Show Address</button><br><br>
+          </div>
+        </div>
+        </div>
+      </div>
+<!--/New Address-->
+
+
+<!--Billing Area-->
+  <div class="col-lg-6" align="left">
+            <div class="order_box">
+              <strong>Your Order</strong>
+
+              <table width="100%">
+                <thead>
+                  <tr>
+                    <td><b>Product</b></td>
+                    <th></th>
+                    <td align="right"><b>Total</b></td>
+                  </tr>
+                </thead>
+                <br><hr>
+                <tbody> 
+
+              <%cartItem.forEach(function(item){%>
+                   <% if(item.qty>0){%>
+                  <tr>
+                    <td ><%=item.title%></td>
+                    <td>x <%= item.qty%></td>
+                    <td align="right">₹ <%=item.price*item.qty%></td>
+                  </tr>
+                  <%}%>
+              <%});%>
+
+                </tbody>
+              </table>
+             <hr>
+
+             <table width="100%">               
+               <tbody>
+                <tr>
+                  <td>Subtotal</td>                   
+                  <td align="right"> ₹ <%=totalPrice%></td> 
+                </tr>              
+                <tr>
+                  <td>Final Total</td>
+                  <td align="right">₹ <%= totalPrice%></td>
+                </tr>
+               </tbody>                
+             </table>
+
+                <br>
+              <div class="payment_item">
+                <div class="radion_btn">
+                  <input type="radio" id="f-option5" name="selector" form="form1" value="COD" required="required"/>
+                  <label for="f-option5">Cash On Delivery</label>
+                  <div class="check"></div>
+                </div>
+                <p>
+                  Please send a check to Store Name, Store Street, Store Town,
+                  Store State / County, Store Postcode.
+                </p>
+              </div>
+              <div class="payment_item active">
+                <div class="radion_btn">
+                  <input type="radio" id="f-option6" name="selector" form="form1" value="Online" required="required" checked/>
+                  <label for="f-option6">Online Card Payment</label>
+                  <img src="img/product/single-product/card.jpg" alt="" />
+                  <div class="check"></div>
+                </div>
+                <p>
+                  Please send a check to Store Name, Store Street, Store Town,
+                  Store State / County, Store Postcode.
+                </p>
+              </div>
+              <div class="creat_account">
+                <input type="checkbox" id="f-option4" name="selectoor" checked />
+                <label for="f-option4">I’ve read and accept the </label>
+                <a href="#">terms & conditions*</a>
+              </div>
+              <%if(address.length>0){%>
+              <button class="btn btn-primary" form="form1">Proceed to Payment</button>
+              <%}else{%>
+
+              <a class="btn_3" href="/payment/addAddress">Proceed to Payment</a>
+
+              
+
+              <%}%>
+            </div>
+
+          </div>
+          <form id="form1" action="/payment/add" method="post"></form>
+<!--Billing Area-->
+
+
+</div>
+</section>
+</center>   
+ 
+  <!--================End Checkout Area =================-->
+
+  <!--::footer_part start::-->
+  <%- include('footer'); %>  
+  <!--::footer_part end::-->
+
+  <script>
+
+     $(document).ready(function () {
+         $('.display1').hide();
+
+         $('.hide1').show();
+        
+        $('#addAddress').click(function () 
+        {
+            $('.display1').hide();
+            $('.hide1').show();        
+        });
+        $('.showadd').click(function () 
+        {
+            $('.display1').show();
+            $('.hide1').hide();        
+        });    
+    });    
+
+  </script>
+
+</body>
+
+</html>

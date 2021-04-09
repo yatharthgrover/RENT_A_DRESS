@@ -1,0 +1,42 @@
+{
+  "name": "winter",
+  "version": "1.0.0",
+  "description": "Project",
+  "main": "expserver.js",
+  "author": "Pro",
+  "license": "ISC",
+  "dependencies": {
+    "alert-node": "^3.0.11",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^3.2.0",
+    "cookie-parser": "^1.4.5",
+    "crypto": "^1.0.1",
+    "csurf": "^1.11.0",
+    "date-format": "^3.0.0",
+    "dateformat": "^3.0.3",
+    "ejs": "^3.1.2",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "express-validator": "^6.4.1",
+    "js-alert": "^1.0.4",
+    "jssha": "^3.1.0",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.9.14",
+    "mongoose-date-format": "^1.2.0",
+    "multer": "^1.4.2",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^6.0.1",
+    "path": "^0.12.7",
+    "payumoney-node": "^2.0.1",
+    "popups": "^1.1.3",
+    "sweetalert2": "^9.10.12",
+    "validator": "^13.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><title>Manage Order</title></head>
+<body class="animsition">
+   <%- include('header'); %>
+        <!-- END HEADER MOBILE-->
+
+        <!-- MENU SIDEBAR-->
+       
+        <!-- END MENU SIDEBAR-->
+
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+            <!-- HEADER DESKTOP-->
+           
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+									<div class="card-header">
+										<h4>Manage Orders</h4>
+									</div>
+									<div class="card-body">
+										<div class="custom-tab">
+											<div class="tab-content pl-3 pt-2" id="nav-tabContent">
+												<div class="tab-pane fade show active" id="custom-nav-home" role="tabpanel" aria-labelledby="custom-nav-home-tab">
+                                                    <div class="table-responsive table-responsive-data2">
+                                                        <table class="table table-data2 align-center" id="searchTable">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Order No.</th>
+                                                                    <th>Date of Order</th>
+                                                                    <th>Total Amount</th>
+                                                                    <th>Pay Type</th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody><%var i=1;%>
+                                                                <%orders.forEach(function(order){%>
+                                                                  <%if(order.status=="Rejected"){%>
+                                                                
+                                                                <tr class="tr-shadow">
+                                                                    <td><%=i%></td>
+                                                                    <td><%=order.orderDate.substr(0,15)%></td>
+                                                                    <td><%=order.totalPrice%></td>
+                                                                    <td><%=order.payType%></td>
+                                                                    <td>
+                                                                        <button type="button" data-toggle="modal" data-target="#Modal<%=i%>">
+                                                                            View Details
+                                                                        </button>
+                                                                    </td>    
+                                                                    </td>
+                                                                    <td>    <a href="/AcceptOrder?userId=<%=order.userId%>&&orderId=<%=order.orderId%>&&Id=<%=order._id%>">
+                                                                        <button class="btn btn-primary" >Accept</button></a>
+                                                                        <a href="/RejectOrder?userId=<%=order.userId%>&&Id=<%=order._id%>&&orderId=<%=order.orderId%>">
+                                                                        <button class="btn btn-danger"  >Reject</button></a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="spacer"></tr>
+                                                                
+                                                                <%}else{%>
+                                                                     <tr class="tr-shadow">
+                                                                    <td><%=i%></td>
+                                                                    <td><%=order.orderDate.substr(0,15)%></td>
+                                                                    <td><%=order.totalPrice%></td>
+                                                                    <td><%=order.payType%></td>
+                                                                    <td>
+                                                                        <button type="button" data-toggle="modal" data-target="#Modala<%=i%>">
+                                                                            View Details
+                                                                        </button>
+                                                                    </td>    
+                                                                    </td>
+                                                                    <td>    <a href="/AcceptOrder?userId=<%=order.userId%>&&orderId=<%=order.orderId%>&&Id=<%=order._id%>">
+                                                                        <button class="btn btn-primary" disabled="disabled">Accept</button></a>
+                                                                        
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="spacer"></tr>
+                                                            <%}i=i+1;})%>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%i=1;%>
+        <%orders.forEach(function(order){%>
+        <%if(order.status=="Rejected"){%>
+        <div class="modal fade" id="Modal<%=i%>" tabindex="-1" role="dialog" aria-labelledby="Modal1Label" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="Modal1Label">
+                            Order No :-  <%=order.orderId%><br/>
+                            Name :- <%=order.address.fullName%>  &emsp;
+                            Number :- <%=order.address.number%>  &emsp;
+                            Address :- <%=order.address.address%>&emsp;<%=order.address.city%>&emsp;<%=order.address.district%>&emsp;<%=order.address.zipCode%>
+							<br>
+							DETAILS FOR THE RETURN OF THE SECURITY AMOUNT :-
+							<br>
+							Account Holder Name :- <%=order.address.accholdname%>&emsp;
+							Account Number :- <%=order.address.accno%>&emsp;
+							IFSC Code :- <%=order.address.ifsc%>
+							
+
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-responsive table-responsive-data2">
+                            <table class="table table-data2" id="searchTable">
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th colspan="2">product name</th>
+                                        <th>Quantity</th>
+                                        <th>price</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <%var j=1%>
+                                    <%order.items.forEach(function(cartItem){%>
+                                    <tr class="tr-shadow">
+                                        <td><%=j%>.</td>
+                                        <td class="img-text">
+                                            <img class="img" src="<%=cartItem.image.substr(7)%>" alt="">
+                                        </td c>
+                                        <td><%=cartItem.title%></td>
+                                        <td><%=cartItem.qty%></td>
+                                        <td><%=cartItem.price%></td>
+                                        <td><%=cartItem.price*cartItem.qty%></td>
+                                    </tr>
+                                    <tr class="spacer"></tr>
+                                    <%j=j+1;%>
+                                   <%});%>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+         <%}else{%>
+            <div class="modal fade" id="Modala<%=i%>" tabindex="-1" role="dialog" aria-labelledby="Modal1Label" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="Modal1Label">
+                            Order No :-  <%=order.orderId%><br/>
+                            Name :- <%=order.address.fullName%>  &emsp;
+                            Number :- <%=order.address.number%>  &emsp;
+                            Address :- <%=order.address.address%>&emsp;<%=order.address.city%>&emsp;<%=order.address.district%>&emsp;<%=order.address.zipCode%>
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-responsive table-responsive-data2">
+                            <table class="table table-data2" id="searchTable">
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th colspan="2">product name</th>
+                                        <th>Quantity</th>
+                                        <th>price</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <%var j=1%>
+                                    <%order.items.forEach(function(cartItem){%>
+                                    <tr class="tr-shadow">
+                                        <td><%=j%>.</td>
+                                        <td class="img-text">
+                                            <img class="img" src="<%=cartItem.image.substr(7)%>" alt="">
+                                        </td c>
+                                        <td><%=cartItem.title%></td>
+                                        <td><%=cartItem.qty%></td>
+                                        <td><%=cartItem.price%></td>
+                                        <td><%=cartItem.price*cartItem.qty%></td>
+                                    </tr>
+                                    <tr class="spacer"></tr>
+                                    <%j=j+1;%>
+                                   <%});%>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <%}i=i+1;})%>
+
+    <!-- Jquery JS-->
+    <script src="vendor/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <!-- Vendor JS       -->
+    <script src="vendor/slick/slick.min.js">
+    </script>
+    <script src="vendor/wow/wow.min.js"></script>
+    <script src="vendor/animsition/animsition.min.js"></script>
+    <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+    </script>
+    <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="vendor/counter-up/jquery.counterup.min.js">
+    </script>
+    <script src="vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="vendor/select2/select2.min.js">
+    </script>
+
+    <!-- Main JS-->
+    <script src="js/main.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="js/form-validate.js"></script>
+    
+    <script>
+		$(document).ready(function(){
+			$('.all-menu').removeClass('active');
+			$('.manageOrder').addClass('active');
+		});
+		
+	</script>
+    
+
+</body>
+
+</html>
+<!-- end document-->
